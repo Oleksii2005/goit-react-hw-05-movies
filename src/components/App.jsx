@@ -1,16 +1,7 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
+// a4d1120350c665aad10b441227c13583
+import React from 'react';
+import { Routes, Route } from 'react-router';
+const App = () => {
+  return <Routes></Routes>;
 };
+export default App;
