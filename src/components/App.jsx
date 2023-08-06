@@ -7,7 +7,7 @@ import MoviesPage from './pages/MoviesPage';
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Header />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/movies" element={<MoviesPage />} />
     </Routes>
   );
