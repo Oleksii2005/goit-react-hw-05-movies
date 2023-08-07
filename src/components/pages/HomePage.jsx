@@ -3,7 +3,7 @@
 import Header from "components/Header/Header";
 
 const HomePage = () => {
-  return <Header/>;
+  return <div>HomePage</div>;
 };
 
 export default HomePage;

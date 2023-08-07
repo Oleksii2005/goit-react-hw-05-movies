@@ -1,15 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import css from "..//Header/Header.module.css"
 const Header = () => {
   return (
-    <nav className='navbar bg-dark mb-3'>
+    <nav className={css.navbar}>
 			<div className={css.container_fluid}>
-				<button className='navbar-brand mb-0 h1 text-success'>
+				<NavLink className={css.btn_outline_success} to='/'>
 					Home
-				</button>
-				<button className='btn btn-outline-success'>
+				</NavLink>
+				<NavLink className={css.btn_outline_success} to='movies'>
 					Movie
-				</button>
+				</NavLink>
 			</div>
 		</nav>
   );

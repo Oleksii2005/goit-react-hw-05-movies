@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { getTrending } from 'api/api';
-import { Link } from 'react-router-dom';
+import { getTrending } from "api/api";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
-const MoviesPage = () => {
+
+const MovieDetails = () => {
     const [movies, setMovies] = useState([])
     // const [error, setError] = useState(null)
     useEffect(()=>{
@@ -25,6 +27,6 @@ const MoviesPage = () => {
       </ul>
     </div>
   )
-};
+}
 
-export default MoviesPage;
+export default MovieDetails
