@@ -25,8 +25,6 @@ async function getMovieCredits(movieId) {
     return response.data.cast;
   
 }
-
-
 // Функція для отримання оглядів фільму за його ідентифікатором
 async function getMovieReviews(movieId) {
   
