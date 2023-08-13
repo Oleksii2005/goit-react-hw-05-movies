@@ -5,12 +5,14 @@ import { Routes, Route } from 'react-router';
 import Layout from './layouts/Layout';
 import HomePage from './pages/HomePage';
 import MoviesPage from './pages/MoviesPage';
+import MovieDetailsPage from "./pages/MovieDetailsPage"
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
+      <Route path='/' element={<Layout/>}>
         <Route index element={<HomePage/>}/>
-        <Route path="movies" element={<MoviesPage />} />
+        <Route path='movies' element={<MoviesPage/>}/>
+        <Route path='/movies/:id' element={<MovieDetailsPage/>}/>
       </Route>
     </Routes>
   );
