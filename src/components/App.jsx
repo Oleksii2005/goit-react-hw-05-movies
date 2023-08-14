@@ -2,7 +2,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
 // import Header from './Header/Header';
-import Layout from './layouts/Layout';
+import Layout from './layouts/SharedLayout';
 import HomePage from './pages/HomePage';
 import MoviesPage from './pages/MoviesPage';
 import MovieDetailsPage from "./pages/MovieDetailsPage"
