@@ -1,52 +1,67 @@
 // a4d1120350c665aad10b441227c13583
 
-import axios from 'axios';
-// const API_KEY = "0baa7cdb523c5e7ac9d70a232fc0ebec"
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYmFhN2NkYjUyM2M1ZTdhYzlkNzBhMjMyZmMwZWJlYyIsInN1YiI6IjY0Y2E1MzFmZDM3MTk3MDEzOTc4YjNlZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RBHU2kDT3Swele15gvAopB0TouomeG_bY1uLDLfirLg';
+import axios from "axios";
+const API_KEY = 'a4d1120350c665aad10b441227c13583'
 
-const config = {
-  headers: { Authorization: `Bearer ${token}` }
-};
-
-
-async function getTrending() {
-  const url = `https://api.themoviedb.org/3/trending/movie/day`;
-  const res = await axios.get(url, config);
-  return res.data.results;
-  // id, title, backdrop_path (jpg), poster_path
-}
-
-async function getMovies(query) {
-  const url = `https://api.themoviedb.org/3/search/movie?query="${query}"`;
-  const res = await axios.get(url, config);
-  return res.data.results;
-  // id, title, backdrop_path (jpg), poster_path
-}
-
-async function getMovieById(movieId) {
-  // 615656
-  const url = `https://api.themoviedb.org/3/movie/${movieId}`;
-  const res = await axios.get(url, config);
-  return res.data;
-  // genres, overview, title, vote_average, release_date, poster_path, backdrop_path
+async function getTrendingMovies() {
+    try {
+      const url = `https://api.themoviedb.org/3/trending/all/day?api_key=${API_KEY}`;
+      const response = await axios.get(url);
+      return response.data.results;
+    } catch (error) {
+      console.error('Error fetching trending movies:', error);
+      return [];
+    }
+  }
   
-  // cast //
-  // name, profile_path
-
-  // reviews //
-// author, content
-}
-
-
-// https://api.themoviedb.org/3/trending/movie/i2GVEvltEu3BXn5crBSxgKuTaca.jpg
-// src="https://themoviedb.org/t/p/w220_and_h330_face/i2GVEvltEu3BXn5crBSxgKuTaca.jpg">
-// https://themoviedb.org/t/p/w220_and_h330_face/uS1AIL7I1Ycgs8PTfqUeN6jYNsQ.jpg
-
-// https://www.themoviedb.org/t/p/w300_and_h450_bestv2/vbvcvIxXywM6rP1ayoz3AxE83oe.jpg
-
-// by id
-//poster https://www.themoviedb.org/t/p/w300_and_h450_bestv2/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg
-
-//backdrop https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/zN41DPmPhwmgJjHwezALdrdvD0h.jpg
-
-export { getTrending, getMovies, getMovieById };
+  async function searchMovies(query, page = 1) {
+    try {
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`;
+      const response = await axios.get(url);
+      return response.data.results;
+    } catch (error) {
+      console.error('Error searching movies:', error);
+      return [];
+    }
+  }
+  
+  async function getMovieDetails(movieId) {
+    try {
+      const url = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching movie details:', error);
+      return null;
+    }
+  }
+  
+  async function getMovieCredits(movieId) {
+    try {
+      const url = `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}`;
+      const response = await axios.get(url);
+      return response.data.cast;
+    } catch (error) {
+      console.error('Error fetching movie credits:', error);
+      return [];
+    }
+  }
+  
+  async function getMovieReviews(movieId) {
+    try {
+      const url = `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${API_KEY}`;
+      const response = await axios.get(url);
+      return response.data.results;
+    } catch (error) {
+      console.error('Error fetching movie reviews:', error);
+      return [];
+    }
+  }
+  
+  export {
+    getTrendingMovies,
+    searchMovies,
+    getMovieDetails,
+    getMovieCredits,
+    getMovieReviews,
+  };

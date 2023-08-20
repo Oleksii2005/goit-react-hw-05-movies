@@ -1,22 +1,34 @@
-import { Link, useLocation } from "react-router-dom";
-import { Container, CardWrapper, MovieName } from "./MoviesList.styled";
+import React, { useEffect, useState } from "react";
+import { getTrendingMovies } from "api/api";
+import { NavLink } from "react-router-dom";
+import styled from './MoviesList.module.css'
 
+const MoviesList = () => {
 
-export const MoviesList = ({ movies }) => {
-  const baseUrl = 'https://themoviedb.org/t/p/w220_and_h330_face'  
-  const defaultImg = 'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700'
-  const location = useLocation()
-   const { pathname } = location
-  return (
-    <Container>
-      {movies.map(({id, poster_path, title}) => (
-        <CardWrapper key={id}>
-          <Link to={pathname.endsWith("/movies") ? `${id}` : `movies/${id}`} state={{ from: location }}>
-            <img src={ poster_path ? `${baseUrl}${poster_path}`: defaultImg} alt="" />
-            <MovieName>{title}</MovieName>
-          </Link>
-        </CardWrapper>
-      ))}
-    </Container>
-  );
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(null);
+    
+    useEffect(() => {
+        getTrendingMovies().then((movies) => {
+            setMovies(movies);
+    }).catch((error) => {
+        setError('Error fetching trending movies: ' + error.message);
+      });
+  }, []);
+    return (
+        <div className={styled.moviesListContainer}>
+            {error && <div>{error}</div>}
+
+            <h1>Trending Today</h1>
+            <ul className={styled.movieList}>
+                {movies.map((movie) => (
+                    <li className={styled.movieItem} key={movie.id}>
+                        <NavLink className={styled.movieLink} to={`/movies/${movie.id}`}>{movie.title ? movie.title : movie.name}</NavLink>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 };
+
+export default MoviesList;

@@ -1,58 +1,28 @@
-.active{
-    color: red;
-}
-.navbar {
-    
-        top: 0;
-        left: 0;
-        position: sticky;
-        z-index: 1100;
-        display: flex;
-        align-items: center; 
-        min-height: 64px;
-        padding-right: 24px;
-        padding-left: 24px;
-        padding-top: 12px;
-        padding-bottom: 12px;
-        /* color: #fff; */
-        background-color: white;
-        box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
-            0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-    }
-
-.bg-dark {
-}
-.mb-3 {
-}
-.container_fluid {
+.header {
     display: flex;
-    border-radius: 3px;
-    overflow: hidden;
-    gap: 25px;
-    
-}
-.navbar-brand {
-}
-.mb-0 {
-}
-.h1 {
-}
-.text-success {
-}
-.btn {
-}
-.btn_outline_success {
-    font-size: medium;
-    color: black;
+    gap: 20px;
+    padding: 10px 20px;
+    margin: 0;
+    list-style: none;
+    border-bottom: 3px solid #e7e9fc;
+  }
+  
+  .header li {
+    margin: 0;
+  }
+  
+  .header .active {
+    color: #ff5733;
+  }
+  
+  .header a {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    transition: color 0.2s;
     text-decoration: none;
-    padding: 15px;
-    transition: all .2s ease-in-out;
-
-}
-.btn_outline_success:hover{
-    color: red;
-    transform: scale(1.1);
-}
-.btn_outline_success.active{
-    color: red;
-}
+  }
+  
+  .header a:hover {
+    color: #ff5733;
+  }
